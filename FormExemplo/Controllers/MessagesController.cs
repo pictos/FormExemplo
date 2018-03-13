@@ -30,7 +30,7 @@ namespace FormExemplo
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
-        public static int campos;
+        
         internal static IDialog<object> Dialogo()
         {            
             return Chain.From(()=>FormDialog.FromForm(Exemplo.BuildForm));

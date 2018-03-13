@@ -1,22 +1,16 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
-using Microsoft.Bot.Builder.Resource;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 
 namespace FormExemplo.Modelos
 {
     [Serializable]
     [Template(TemplateUsage.NotUnderstood, "Desculpe não entendi \"{0}\".")]
-    //[Template(TemplateUsage.EnumSelectOne, "Qual das opções abaixo você deseja?")]
     public class Exemplo
     {
-        [Prompt("Qual {&} você deseja?{||}", ChoiceFormat ="{1}")]
+        [Prompt("Qual {&} você deseja?{||}", ChoiceFormat = "{1}")]
         public Salgadinhos Salgadinho { get; set; }
-        //[Prompt("O que deseja beber?")]
+        [Prompt("O que deseja beber? {||}")]
         public Bebidas Bebidas { get; set; }
         //[Prompt("Selecione o tipo de entrega, motoboy será adiciona R$2,00 ao valor final")]
         public TipoEntrega TipoEntrega { get; set; }
@@ -25,7 +19,7 @@ namespace FormExemplo.Modelos
         public string Telefone { get; set; }
         public string Endereco { get; set; }
 
-        
+
         public static IForm<Exemplo> BuildForm()
         {
 
@@ -44,7 +38,7 @@ namespace FormExemplo.Modelos
 
         }
 
-        
+
     }
     #region Pedidos
     [Describe("Tipo de Entrega")]
