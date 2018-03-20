@@ -25,8 +25,8 @@ namespace FormExemplo.Modelos
 
             return new FormBuilder<Exemplo>()
                  .Message("Bem vindo!")
-                 .Field(nameof(Salgadinho))
                  .Field(nameof(Bebidas))
+                 .Field(nameof(Salgadinho))
                  .Field(nameof(TipoEntrega))
                  .AddRemainingFields() //Adicona os outros campos
                  .Confirm("{Nome}.<br/> Você escolheu um {Salgadinho} <br/> acompanhado de uma deliciosa {Bebidas}") //Para mudar a mensagem de confirmação

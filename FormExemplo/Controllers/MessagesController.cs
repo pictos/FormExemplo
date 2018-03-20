@@ -32,8 +32,9 @@ namespace FormExemplo
         }
         
         internal static IDialog<object> Dialogo()
-        {            
-            return Chain.From(()=>FormDialog.FromForm(Exemplo.BuildForm));
+        {
+            //return Chain.From(()=>FormDialog.FromForm(Exemplo.BuildForm));
+            return Chain.From(() => FormDialog.FromForm(Aluguel.BuildForm));
         }
 
         private Activity HandleSystemMessage(Activity message)
