@@ -8,16 +8,22 @@ namespace FormExemplo.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        public Task StartAsync(IDialogContext context)
+        public async Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
+            await context.PostAsync("Olá sou o bot de aluguel de carros");
+            await Resposta(context);
 
-            return Task.CompletedTask;
+            context.Wait(MessageReceivedAsync);
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        static async Task Resposta(IDialogContext contexto)
         {
-            var activity = await result as Activity;
+            await contexto.PostAsync("Você gostaria de alugar um carro?");
+        }
+
+        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
+        {
+            var activity = await result;
 
             // calculate something for us to return
             int length = (activity.Text ?? string.Empty).Length;
@@ -25,7 +31,9 @@ namespace FormExemplo.Dialogs
             // return our reply to the user
             await context.PostAsync($"You sent {activity.Text} which was {length} characters");
 
-            context.Wait(MessageReceivedAsync);
+            //context.Wait(MessageReceivedAsync);
+            await Resposta(context);
+            context.Done(activity);
         }
     }
 }

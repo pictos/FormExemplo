@@ -43,8 +43,6 @@ namespace FormExemplo.Modelos
                 })
                 .Build();
         }
-
-
     }
     
     #region Campos

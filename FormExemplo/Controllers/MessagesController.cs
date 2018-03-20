@@ -21,7 +21,7 @@ namespace FormExemplo
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity,Dialogo);
+                await Conversation.SendAsync(activity,()=>Dialogs.AluguelDialog.dialogo);
             }
             else
             {
@@ -29,13 +29,7 @@ namespace FormExemplo
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
-        }
-        
-        internal static IDialog<object> Dialogo()
-        {
-            //return Chain.From(()=>FormDialog.FromForm(Exemplo.BuildForm));
-            return Chain.From(() => FormDialog.FromForm(Aluguel.BuildForm));
-        }
+        }       
 
         private Activity HandleSystemMessage(Activity message)
         {
